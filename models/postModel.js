@@ -9,6 +9,14 @@ const postSchema = new mongoose.Schema({
     type: Number,
     required: true,
   },
+  day: {
+    type: String,
+    required: true,
+  },
+  city: {
+    type: String,
+    required: true,
+  },
   title: {
     type: String,
     required: true,

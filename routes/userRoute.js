@@ -7,10 +7,12 @@ const {
   getFriends,
   getAllUser,
   getUserDetails,
+  logout,
 } = require("../controllers/userController");
 const router = express.Router();
 router.route("/register").post(registerUser);
 router.route("/login").post(loginUser);
+router.route("/logout").post(logout);
 router.route("/add-friend/:friendId").put(isAuthenticatedUser, addFriend);
 router.route("/friends").get(isAuthenticatedUser, getFriends);
 router
