@@ -4,13 +4,13 @@ const cookieParser = require("cookie-parser");
 const bodyParser = require("body-parser");
 const cors = require("cors");
 const errorMiddleware = require("./middleware/error");
-// Config
+
 if (process.env.NODE_ENV !== "PRODUCTION") {
-  require("dotenv").config({ path: "config/config.env" });
+  require("dotenv").config({ path: ".env" });
 }
 
 const corsOptions = {
-  origin: [process.env.FRONTEND_URL_RELEASE, "*"],
+  origin: [process.env.FRONTEND_URL_RELEASE,process.env.FRONTEND_URL, "*"],
   credentials: true,
   allowedHeaders: ["Content-Type", "Authorization"],
   allowedMethods: ["GET", "POST", "PUT", "DELETE"],
