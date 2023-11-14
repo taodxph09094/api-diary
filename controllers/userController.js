@@ -2,7 +2,7 @@ const ErrorHander = require("../utils/errorhander");
 const catchAsyncErrors = require("../middleware/catchAsyncErrors");
 const User = require("../models/userModel");
 const Post = require("../models/postModel");
-const sendToken = require("../utils/jwtToken");
+const sendToken  = require("../utils/jwtToken");
 
 // Register a User
 exports.registerUser = catchAsyncErrors(async (req, res, next) => {
@@ -15,26 +15,20 @@ exports.registerUser = catchAsyncErrors(async (req, res, next) => {
   });
 
   sendToken(user, 201, res);
-});
+})
 
 // Login User
 exports.loginUser = catchAsyncErrors(async (req, res, next) => {
   const { username, password } = req.body;
-
   // checking if user has given password and email both
-
   if (!username || !password) {
     return next(new ErrorHander("Nhập mật khẩu", 400));
   }
-
   const user = await User.findOne({ username }).select("+password");
-
   if (!user) {
     return next(new ErrorHander("Sai tài khoản hoặc mật khẩu", 401));
   }
-
   const isPasswordMatched = await user.comparePassword(password);
-
   if (!isPasswordMatched) {
     return next(new ErrorHander("Sai tài khoản hoặc mật khẩu", 401));
   }
