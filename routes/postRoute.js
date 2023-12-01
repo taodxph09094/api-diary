@@ -8,7 +8,7 @@ const {
 } = require("../controllers/postController");
 
 const router = express.Router();
-router.route("/all").get(getPosts);
+router.route("/all").get(isAuthenticatedUser, getPosts);
 router.route("/create").post(isAuthenticatedUser, createPost);
 router.route("/post-by-user/:userId").get(isAuthenticatedUser, getPostByUser);
 router.route("/:id").get(isAuthenticatedUser, getPostDetails);
